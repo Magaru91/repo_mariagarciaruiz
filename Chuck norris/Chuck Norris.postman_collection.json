@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "21b4c684-03f8-4a23-b9f3-de8518fa008a",
+    "name": "Chuck Norris",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53794660",
+    "_collection_link": "https://go.postman.co/collection/53794660-21b4c684-03f8-4a23-b9f3-de8518fa008a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Random Joke",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/random",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "random"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Random Joke from Category",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response contains a joke value\", function () {",
+              "    const response = pm.response.json();",
+              "    pm.expect(response).to.have.property(\"value\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/random?category={{category}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "random"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "{{category}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Categories",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has 16 categories\", function () {",
+              "    const categories = pm.response.json();",
+              "    pm.expect(categories.length).to.eql(16);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/categories",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
